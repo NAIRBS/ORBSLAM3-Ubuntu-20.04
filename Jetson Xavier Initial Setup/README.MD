@@ -71,20 +71,23 @@ wget https://update.code.visualstudio.com/1.50.0/linux-deb-arm64/stable -O stabl
 sudo dpkg -i stable.deb
 ```
 
-## ☀️ 9. (Optional) Install [Sunshine](https://github.com/LizardByte/Sunshine/releases/tag/v0.22.2) if you want to work on the Jetson through a windows machine, note that performance is servicable but still not good, still requires a display connected to the Jetson Xavier NX.
+## ☀️ 9. (Optional) Install [Sunshine](https://github.com/LizardByte/Sunshine/releases/tag/v0.22.2) 
+### Useful if you want to work on the Jetson through a Windows machine, note that performance is serviceable but still not good, still requires a display connected to the Jetson Xavier NX.
 
 * Install **Sunshine v0.22.2** – is the latest version that supports **Ubuntu 20.04** on Jetpack 5.1.5, anything past this might not work.
 
-## 🖱️ 10. (Optional) Install Barrier (for KVM/Mouse Sharing), both devices need to be connected to the same Wifi, recommended if working on both Windows + Jetson Xavier NX at the same time side by side
+## 🖱️ 10. (Optional) Install Barrier (for KVM/Mouse Sharing)
+### Both Windows Machine and the Jetson Xavier NX need to be connected to the same Wifi, recommended if working on both Windows + Jetson Xavier NX at the same time, side by side
 
 * **Jetson**: The Latest Barrier version for Linux is fine.
 * **Server (PC/Laptop)**: Install [**Barrier v2.3.4**](https://github.com/debauchee/barrier/releases/tag/v2.3.4) to ensure compatibility; it will not work with any other version
 
-## 🧭 11. Install ORB_SLAM_COMMUNITY (Merged improvements and bug fixes from original ORBSLAM3 after 3 years of inactivity, some functionality will not work without these improvements to the original codebase)
+## 🧭 11. Install ORB_SLAM_COMMUNITY 
+### Contains merged improvements and bug fixes from original ORBSLAM3 after 3 years of inactivity, some functionality will not work without these improvements to the original codebase.
 
+* Follow the ORB-SLAM3 installation guide [here](https://github.com/NAIRBS/ORBSLAM3-Ubuntu-20.04/tree/main/ORBSLAM3%20Setup)
 * Clone and build [ORB_SLAM_COMMUNITY](https://github.com/jeremysalwen/ORB_SLAM_COMMUNITY).
 * Ensure Pangolin, OpenCV (requires GUI support and above v4.4), Eigen, and ROS are properly configured beforehand, these 4 specific libraries require environment variable manipulation in either the .bashrc file (ROS), at the start of every terminal session (Pangolin/OpenCV for ORBSLAM3 + ROS2) or one-time symbolic file setup (Eigen for ROS2).
-* Follow the ORB-SLAM3 installation guide [here](https://github.com/NAIRBS/ORBSLAM3-Ubuntu-20.04/tree/main/ORBSLAM3%20Setup)
 
 ## 🤖 12. Install ROS + ROS Node
 
