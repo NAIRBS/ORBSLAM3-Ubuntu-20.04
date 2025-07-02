@@ -287,8 +287,8 @@ cd ~/ORB_SLAM3
 nano tum_vi_examples.sh
 ```
 
-You can find the original example shell scripts [here](https://github.com/JiangPei-lab/ORB-SLAM3-JiangPei/tree/master), the original ORBSLAM3 repository does not have the example scripts.
-Copy the relevant TUM-VI script and adjust the relevant dataset paths if you don't leave everything in the home directory. Remember to change [USERNAME] if you do.
+## You can find the original example shell scripts [here](https://github.com/JiangPei-lab/ORB-SLAM3-JiangPei/tree/master), the original ORBSLAM3 repository does not have the example scripts.
+## Copy the relevant TUM-VI script and adjust the relevant dataset paths if you don't leave everything in the home directory. Remember to change [USERNAME] if you do.
 
 ```bash
 #!/bin/bash
@@ -301,7 +301,10 @@ echo "Launching Room 1 with Monocular sensor"
 ./Examples/Monocular/mono_tum_vi Vocabulary/ORBvoc.txt Examples/Monocular/TUM-VI.yaml "$pathDatasetTUM_VI"/mav0/cam0/data Examples/Monocular/TUM_TimeStamps/dataset-corridor4_512.txt dataset-corridor4_512_mono
 ```
 
+# After you've created the tum_vi_examples.sh file, run it with:
+```
 chmod +x tum_vi_examples.sh
 ./tum_vi_examples.sh
 ```
----
+# You should observe the terminal load in the parameters, and eventually open 2 GUIs, one for the monocular camera input and the other for the SLAM key feature mapping and localisation, as well as camera trajectory.
+
