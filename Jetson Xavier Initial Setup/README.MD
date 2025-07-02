@@ -1,7 +1,8 @@
 # Jetson Xavier NX Setup Guide (8 GB Model) (Based on Jetpack 5.1.5)
 > 📺 **Reference Guide**:
 > [YouTube Walkthrough](https://www.youtube.com/watch?v=LuWYXKrQcJ8&list=PLGs0VKk2DiYw_Xx7c3M_9HMEcn9hPhFJV&index=2)
-> Try not to deviate from the recommended versions and instructions, the Jetson Xavier NX is very picky on what it can and cannot run, especially since it's quite old since [release](https://developer.nvidia.com/blog/nvidia-releases-jetson-xavier-nx-developer-kit-with-cloud-native-support/), almost every single modern/recent dependency and library is incompatible with it, stock ubuntu 20.04 apt installations will be used, which in itself is ALSO outdated)
+> Try not to deviate from the recommended versions and instructions, the Jetson Xavier NX is very picky on what it can and cannot run, especially since it's quite old since [release] (https://developer.nvidia.com/blog/nvidia-releases-jetson-xavier-nx-developer-kit-with-cloud-native-support/) 5 years and counting from the writing of this README, almost every single modern/recent dependency and library is incompatible with it, stock ubuntu 20.04 apt installations will be used, which in itself is ALSO outdated.
+
 > Do not bother with optional steps if unnecessary for your needs, you will find that it barely works at a serviceable level, and is often not worth the effort.
 
 ## 🗂️ 1. SD Card Preparation
