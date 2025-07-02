@@ -1,3 +1,84 @@
 # Jetson Setup Guide (Based on Jetpack 5.1.5)
 > 📺 **Reference Guide**:
 > [YouTube Walkthrough](https://www.youtube.com/watch?v=LuWYXKrQcJ8&list=PLGs0VKk2DiYw_Xx7c3M_9HMEcn9hPhFJV&index=2)
+
+## 🗂️ 1. SD Card Preparation
+
+* Use the **largest SD card** available (≥64GB is recommended).
+* Format the card as **exFAT** (required for files > 4GB).
+* A **32GB SD card is not sufficient** for Jetpack and development needs.
+
+## ⚙️ 2. Flash Jetpack 5.1.5
+
+* Ensure **QSPI firmware** has been updated to support Jetpack versions **5.x and above**, once you reflash the firmware following this [YouTube Walkthrough](https://www.youtube.com/watch?v=NJyHJzG6On0), it will persist across multiple failed Ubuntu installations and only needs to be done once.
+* Flash the SD card with [Jetpack 5.1.5](http://developer.nvidia.com/embedded/jetpack-sdk-515).
+* Insert the SD card into the Jetson NX and follow the initial setup steps in the [YouTube Walkthrough](https://www.youtube.com/watch?v=LuWYXKrQcJ8&list=PLGs0VKk2DiYw_Xx7c3M_9HMEcn9hPhFJV&index=2)
+
+## 🖥️ 3. Initial Ubuntu Configuration
+
+1. **Display Settings**:
+
+   * Set **Scale** to **125%** under Ubuntu Display Settings.
+
+2. **UI Preferences**:
+
+   * Change the **theme to Dark**.
+   * Disable **Power Saving > Blank Screen**.
+   * Disable **Screen Lock** completely.
+
+3. **Terminal Font Configuration**:
+
+   * Open Terminal → Preferences → *Unnamed* Profile → Text → Enable **Custom Font** → Set **Font Size** to **17**.
+
+## 🔄 4. Software Updates
+
+* Accept the Ubuntu **Software Updater** prompt and allow it to complete system updates. This will take ~ 1 Hour.
+
+## 🐍 5. Install pip and jtop
+
+```bash
+sudo apt-get install python3-pip
+sudo pip3 install -U jetson-stats
+```
+
+## ⚡ 6. Power Mode Settings
+
+* Set to **20W 6-core mode** through the GUI on the top right.
+
+---
+
+## 🔧 7. Install Essential Utilities
+
+```bash
+sudo apt install nano apt-utils
+```
+
+## 🧰 8. (Optional) Install Visual Studio Code (v1.5 or v1.65.2), however, this takes a long time to open, not recommended if not necessary.
+
+> Note: Jetson requires a compatible ARM64 version AND VSCode will not work past v1.65.2 according to [forum posters](https://forums.developer.nvidia.com/t/vs-code-can-t-launch-with-jetpack-5-0/213980/13)
+
+```bash
+wget https://update.code.visualstudio.com/1.50.0/linux-deb-arm64/stable -O stable.deb
+sudo dpkg -i stable.deb
+```
+
+## ☀️ 9. (Optional) Install [Sunshine](https://github.com/LizardByte/Sunshine/releases/tag/v0.22.2) if you want to work on the Jetson through a windows machine, note that performance is servicable but still not good, still requires a display connected to the Jetson Xavier NX.
+
+* Install **Sunshine v0.22.2** – is the latest version that supports **Ubuntu 20.04** on Jetpack 5.1.5, anything past this might not work.
+
+## 🖱️ 10. (Optional) Install Barrier (for KVM/Mouse Sharing), both devices need to be connected to the same Wifi, recommended if working on both Windows + Jetson Xavier NX at the same time side by side
+
+* **Jetson**: The Latest Barrier version for Linux is fine.
+* **Server (PC/Laptop)**: Install [**Barrier v2.3.4**](https://github.com/debauchee/barrier/releases/tag/v2.3.4) to ensure compatibility; it will not work with any other version
+
+## 🧭 11. Install ORB-SLAM3
+
+* Clone and build [ORB-SLAM3](https://github.com/UZ-SLAMLab/ORB_SLAM3).
+* Ensure Pangolin, OpenCV (requires GUI support and above v4.4), Eigen, and ROS are properly configured beforehand.
+* Follow the ORB-SLAM3 installation guide[here](https://github.com/NAIRBS/ORBSLAM3-Ubuntu-20.04/tree/main/ORBSLAM3%20Setup)
+
+## 🤖 12. Install ROS
+
+* Follow the ROS installation guide for **Jetpack 5.1.5 (Ubuntu 20.04)** [here](https://github.com/NAIRBS/ORBSLAM3-Ubuntu-20.04/tree/main/ROS2%20Node%20Setup)
+
+
