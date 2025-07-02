@@ -1,7 +1,6 @@
 # ORB-SLAM3 Setup Guide (with Pangolin, OpenCV, and VCPKG)
 
 ## [Dependencies Required](https://github.com/UZ-SLAMLab/ORB_SLAM3)
-```
 | Dependency     | Notes                                                |
 | -------------- | ---------------------------------------------------- |
 | Pangolin       | Visualization library                                |
@@ -10,7 +9,6 @@
 | DBoW2 / g2o    | Already included in `Thirdparty` folder of ORB-SLAM3 |
 | Python         | For dataset scripts and bindings                     |
 | ROS (Optional) | For ROS integration                                  |
-```
 
 ## 1. Pangolin Installation (via VCPKG)
 
