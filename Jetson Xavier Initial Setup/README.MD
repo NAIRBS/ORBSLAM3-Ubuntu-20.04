@@ -4,7 +4,7 @@
 
 > Try not to deviate from the recommended versions and instructions, the Jetson Xavier NX is very picky on what it can and cannot run, especially since it's quite old since [release](https://developer.nvidia.com/blog/nvidia-releases-jetson-xavier-nx-developer-kit-with-cloud-native-support/) 5 years and counting from the writing of this README.
 
-> Almost every single modern/recent dependency and library is incompatible with the Jetson Xavier NX; usually, stock Ubuntu 20.04 apt installations will be used, which in itself is ALSO outdated. (vcpkg)[https://github.com/microsoft/vcpkg] will be used where possible to avoid building everything from source if recent dependencies are required by ORBSLAM3/ROS2, such as OpenCV.
+> Almost every single modern/recent dependency and library is incompatible with the Jetson Xavier NX; usually, stock Ubuntu 20.04 apt installations will be used, which in itself is ALSO outdated. [vcpkg](https://github.com/microsoft/vcpkg) will be used where possible to avoid building everything from source if recent dependencies are required by ORBSLAM3/ROS2, such as OpenCV.
 
 > Do not bother with optional steps if unnecessary for your needs, you will find that it barely works at a serviceable level, and is often not worth the effort.
 
