@@ -1,9 +1,14 @@
 # Jetson Xavier NX Setup Guide (8 GB Model) (Based on Jetpack 5.1.5)
 > 📺 **Reference Guide**:
 > [YouTube Walkthrough](https://www.youtube.com/watch?v=LuWYXKrQcJ8&list=PLGs0VKk2DiYw_Xx7c3M_9HMEcn9hPhFJV&index=2)
-> Try not to deviate from the recommended versions and instructions, the Jetson Xavier NX is very picky on what it can and cannot run, especially since it's quite old since [release] (https://developer.nvidia.com/blog/nvidia-releases-jetson-xavier-nx-developer-kit-with-cloud-native-support/) 5 years and counting from the writing of this README, almost every single modern/recent dependency and library is incompatible with it, stock ubuntu 20.04 apt installations will be used, which in itself is ALSO outdated.
+
+> Try not to deviate from the recommended versions and instructions, the Jetson Xavier NX is very picky on what it can and cannot run, especially since it's quite old since [release](https://developer.nvidia.com/blog/nvidia-releases-jetson-xavier-nx-developer-kit-with-cloud-native-support/) 5 years and counting from the writing of this README.
+
+> Almost every single modern/recent dependency and library is incompatible with the Jetson Xavier NX; usually, stock Ubuntu 20.04 apt installations will be used, which in itself is ALSO outdated. (vcpkg)[https://github.com/microsoft/vcpkg] will be used where possible to avoid building everything from source if recent dependencies are required by ORBSLAM3/ROS2, such as OpenCV.
 
 > Do not bother with optional steps if unnecessary for your needs, you will find that it barely works at a serviceable level, and is often not worth the effort.
+
+> It is HIGHLY RECOMMENDED to do all ORBSLAM3 + ROS2 development work (if changing the source code is necessary) on a Linux VM or WSL 2.0 before installation on the Jetson Xavier NX. The Jetson Xavier NX itself is VERY SLOW when rebuilding/installing, ORBSLAM3 can take up to 3-4 hours to build and install.
 
 ## 🗂️ 1. SD Card Preparation
 
@@ -14,9 +19,9 @@
 ## ⚙️ 2. Flash Jetpack 5.1.5
 
 * Ensure **QSPI firmware** has been updated to support Jetpack versions **5.x and above**, once you reflash the firmware following this [YouTube Walkthrough](https://www.youtube.com/watch?v=NJyHJzG6On0), it will persist across multiple failed Ubuntu installations and only needs to be done once.
-* Flash the SD card with [Jetpack 5.1.5](http://developer.nvidia.com/embedded/jetpack-sdk-515) with another machine (preferable windows), guide [here](https://youtu.be/LuWYXKrQcJ8?list=PLGs0VKk2DiYw_Xx7c3M_9HMEcn9hPhFJV&t=658)
+* Flash the SD card with [Jetpack 5.1.5](http://developer.nvidia.com/embedded/jetpack-sdk-515) with another machine (preferably Windows), following this [YouTube Walkthrough](https://youtu.be/LuWYXKrQcJ8?list=PLGs0VKk2DiYw_Xx7c3M_9HMEcn9hPhFJV&t=658)
 * Insert the SD card into the Jetson NX and follow the initial setup steps in the [YouTube Walkthrough](https://youtu.be/LuWYXKrQcJ8?list=PLGs0VKk2DiYw_Xx7c3M_9HMEcn9hPhFJV&t=17132)
-* Note that you need a Wired USB-A Mouse (or wireless with dongle), Keyboard (wireless should work, but there are some issues with Bluetooth), a HDMI/DISPLAY-PORT wired Display and at least 1-3 Hours to do all of this.
+* Note that you need a Wired USB-A Mouse (or wireless with a dongle), Keyboard (wireless should work, but there are supposedly some issues with Bluetooth), a HDMI/DISPLAY-PORT wired Display and at least 1-3 Hours.
 
 ## 🖥️ 3. Initial Ubuntu Configuration
 
@@ -75,7 +80,7 @@ sudo dpkg -i stable.deb
 * **Jetson**: The Latest Barrier version for Linux is fine.
 * **Server (PC/Laptop)**: Install [**Barrier v2.3.4**](https://github.com/debauchee/barrier/releases/tag/v2.3.4) to ensure compatibility; it will not work with any other version
 
-## 🧭 11. Install ORB_SLAM_COMMUNITY (Merged improvements and bug fixes from original ORBSLAM3 after 3 years of inactivity)
+## 🧭 11. Install ORB_SLAM_COMMUNITY (Merged improvements and bug fixes from original ORBSLAM3 after 3 years of inactivity, some functionality will not work without these improvements to the original codebase)
 
 * Clone and build [ORB_SLAM_COMMUNITY](https://github.com/jeremysalwen/ORB_SLAM_COMMUNITY).
 * Ensure Pangolin, OpenCV (requires GUI support and above v4.4), Eigen, and ROS are properly configured beforehand, these 4 specific libraries require environment variable manipulation in either the .bashrc file (ROS), at the start of every terminal session (Pangolin/OpenCV for ORBSLAM3 + ROS2) or one-time symbolic file setup (Eigen for ROS2).
