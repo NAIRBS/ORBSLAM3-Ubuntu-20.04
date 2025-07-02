@@ -3,7 +3,7 @@
 # ORB-SLAM3 Setup Guide (with Pangolin, OpenCV, and VCPKG)
 
 ## [Dependencies Required](https://github.com/UZ-SLAMLab/ORB_SLAM3)
-
+```
 | Dependency     | Notes                                                |
 | -------------- | ---------------------------------------------------- |
 | Pangolin       | Visualization library                                |
@@ -12,7 +12,7 @@
 | DBoW2 / g2o    | Already included in `Thirdparty` folder of ORB-SLAM3 |
 | Python         | For dataset scripts and bindings                     |
 | ROS (Optional) | For ROS integration                                  |
-
+```
 ---
 
 ## 1. Pangolin Installation (via VCPKG)
@@ -294,7 +294,7 @@ nano tum_vi_examples.sh
 pathDatasetTUM_VI='/home/[USERNAME]/Datasets/TUM-VI/dataset-corridor4_512_16' # REMEMBER TO UPDATE THIS TO YOUR PATH
 data_name='dataset-corridor4_512'
 
-#------------------------------------
+#++++++++++++++++++++++++++++++++++++
 # Monocular Examples
 echo "Launching Room 1 with Monocular sensor"
 ./Examples/Monocular/mono_tum_vi Vocabulary/ORBvoc.txt Examples/Monocular/TUM-VI.yaml "$pathDatasetTUM_VI"/mav0/cam0/data Examples/Monocular/TUM_TimeStamps/dataset-corridor4_512.txt dataset-corridor4_512_mono
