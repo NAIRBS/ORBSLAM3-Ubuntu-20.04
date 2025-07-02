@@ -12,7 +12,8 @@
 
 ## 🗂️ 1. SD Card Preparation
 
-* Use the **largest SD card** you have available (≥64GB is recommended, ~4GB for OS + ~10+ GB Dependencies + ~16 GB Swapfile + Additional storage for ORBSLAM3 + ROS2 + Example files to test ORBSLAM3 (each minimally 5-10 GB large).
+* Use the **largest SD card** you have available
+- ≥64GB is recommended, ~4GB for OS + ~10+ GB Dependencies + ~16 GB Swapfile + Additional storage for ORBSLAM3 + ROS2 + Example files to test ORBSLAM3 (each minimally 5-10 GB large).
 * Format the card as **exFAT** (required for files > 4GB, which consists of mostly ORBSLAM3 test files that come in large compressed files).
 * A **32GB SD card is NOT sufficient** for Jetpack and ORBSLAM3 development needs.
 
