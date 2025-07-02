@@ -128,6 +128,7 @@ cd ~/vcpkg
 git pull
 ./vcpkg update
 ./vcpkg install libsystemd:arm64-linux
+# Note that this builds 28-29 dependencies from source and can take up to 3-5 hours on the Jetson Xavier NX, but only needs to be built once
 ./vcpkg install opencv4
 ```
 
@@ -284,9 +285,12 @@ Create and run test script:
 ```bash
 cd ~/ORB_SLAM3
 nano tum_vi_examples.sh
-# You can find the original example shell scripts [here](https://github.com/JiangPei-lab/ORB-SLAM3-JiangPei/tree/master), the original ORBSLAM3 repository does not have the example scripts.
-# Copy the relevant TUM-VI script and adjust the relevant dataset paths if you don't leave everything in the home directory. Remember to change [USERNAME] if you do.
 ```
+
+You can find the original example shell scripts [here](https://github.com/JiangPei-lab/ORB-SLAM3-JiangPei/tree/master), the original ORBSLAM3 repository does not have the example scripts.
+Copy the relevant TUM-VI script and adjust the relevant dataset paths if you don't leave everything in the home directory. Remember to change [USERNAME] if you do.
+
+```bash
 #!/bin/bash
 pathDatasetTUM_VI='/home/[USERNAME]/Datasets/TUM-VI/dataset-corridor4_512_16' # REMEMBER TO UPDATE THIS TO YOUR PATH
 data_name='dataset-corridor4_512'
