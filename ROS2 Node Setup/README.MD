@@ -63,7 +63,7 @@ Edit `CMakeLists.txt` (line 5):
 set(ENV{PYTHONPATH} "/opt/ros/foxy/lib/python3.8/site-packages:/usr/local/lib/python3.8/dist-packages")
 ```
 
-Update CMakeModules to find ORBSLAM3 Folder, adjust when necessary when using differnt builds of ORBSLAM3:
+Update CMakeModules to find ORBSLAM3 Folder, adjust when necessary when using different builds of ORBSLAM3:
 ```bash
 nano ~/colcon_ws/src/orbslam3/CMakeModules/FindORB_SLAM3.cmake
 ```
