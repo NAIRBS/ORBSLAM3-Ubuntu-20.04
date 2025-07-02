@@ -132,7 +132,7 @@ Create the script:
 nano ~/colcon_ws/src/orbslam3/src/url_camera_publisher.py
 ```
 
-Paste the following (remember to update the URL based on the IP assigned to your camera by your Mobile Hotspot): [Here](https://github.com/NAIRBS/ORBSLAM3-Ubuntu-20.04/blob/main/ROS2%20Node%20Setup/url_camera_publisher.py)
+## Paste the following (remember to update the URL based on the IP assigned to your camera by your Mobile Hotspot): [Here](https://github.com/NAIRBS/ORBSLAM3-Ubuntu-20.04/blob/main/ROS2%20Node%20Setup/url_camera_publisher.py)
 
 Make it an executable:
 
@@ -166,7 +166,7 @@ Create the script:
 nano ~/colcon_ws/src/orbslam3/src/stereo_url_camera_publisher.py
 ```
 
-Paste the following from [Here](https://github.com/NAIRBS/ORBSLAM3-Ubuntu-20.04/blob/main/ROS2%20Node%20Setup/stereo_url_camera_publisher.py)
+## Paste the following (remember to update the URL based on the IP assigned to your camera by your Mobile Hotspot): [Here](https://github.com/NAIRBS/ORBSLAM3-Ubuntu-20.04/blob/main/ROS2%20Node%20Setup/stereo_url_camera_publisher.py)
 
 Make it executable:
 
@@ -202,7 +202,7 @@ Create the config file config.yaml with:
 nano ~/colcon_ws/src/orbslam3/config/stereo/config.yaml
 ```
 
-Paste the contents of the file from [here](https://github.com/NAIRBS/ORBSLAM3-Ubuntu-20.04/blob/main/ROS2%20Node%20Setup/config.yaml):
+## Paste the contents of the file from [Here](https://github.com/NAIRBS/ORBSLAM3-Ubuntu-20.04/blob/main/ROS2%20Node%20Setup/config.yaml)
 
 ---
 
