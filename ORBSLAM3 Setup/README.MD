@@ -306,5 +306,7 @@ echo "Launching Room 1 with Monocular sensor"
 chmod +x tum_vi_examples.sh
 ./tum_vi_examples.sh
 ```
-# You should observe the terminal load in the parameters, and eventually open 2 GUIs, one for the monocular camera input and the other for the SLAM key feature mapping and localisation, as well as camera trajectory.
+## You should observe the terminal load in the parameters, and eventually open 2 GUIs:
+1. Monocular camera input 
+2. SLAM key feature mapping and localisation, as well as camera trajectory.
 
