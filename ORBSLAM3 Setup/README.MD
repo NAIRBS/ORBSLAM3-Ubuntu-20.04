@@ -70,6 +70,7 @@ sudo cmake --build build/ --target install
 ### 1.4 Install Pangolin via [vcpkg](https://github.com/microsoft/vcpkg)
 
 ```bash
+git clone https://github.com/Microsoft/vcpkg.git
 cd ~/vcpkg
 ./bootstrap-vcpkg.sh
 ./vcpkg integrate install
