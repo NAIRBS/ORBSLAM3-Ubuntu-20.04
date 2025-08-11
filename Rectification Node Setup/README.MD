@@ -1,6 +1,6 @@
 ---
 
-# ROS2 (Foxy)  + ORB-SLAM3 (Community  Version) Integration with IP Camera Streaming
+# ROS2 (Foxy)  + Stereo rectification with IP Camera Streaming
 
 This guide walks through setting up **ROS2 Foxy**, **stereo_camera_pipeline ROS2 Package**, and using **ESP32 cameras** for monocular and stereo SLAM.
 
@@ -40,3 +40,23 @@ Source ROS2 (you need to do this again if this is not added to your bashrc scrip
 source /opt/ros/foxy/setup.bash
 ```
 
+## Usage with ESP32 Camera Modules
+Use this ROS2 node to publish rectified Stereo ESP32 Camera Input: [stereo_camera_pipeline](https://github.com/Shye0930/stereo_camera_pipeline)
+1. Instructions on optimal ESP32 Camera flashing and calibration here: [ros2_rolling](https://github.com/NAIRBS/ORBSLAM3-Ubuntu-20.04/tree/main/ROS2%20Node%20Setup)
+2. Once you've flashed your ESP32s (pinhole cameras) and obtained calibration matrixes/data from step 1, you need to connect your ESP32s (with hardcoded SSID login) to the local wifi/hotspot, you also need to connect your machine to the same wifi/hotspot. You also need to format the calibration data into the yaml config file format.
+3. Make sure to update the ip addresses assigned by your wifi/hotspot and the calibration file location in stereo_pipeline.launch.py (these files have been added for the original author's convenience), then run the following to start publishing video frames in ROS2 topics:
+```
+    $: ros2 launch stereo_camera_pipeline stereo_pipeline.launch.py
+```
+After you've started publishing the stereo rectified (and raw frames) from running the previous pipeline node, you should see the available topics named:
+```
+$: ros2 topic list
+/parameter_events
+/rosout
+/stereo/left/camera_info
+/stereo/left/image_raw
+/stereo/left/rectified_images
+/stereo/right/camera_info
+/stereo/right/image_raw
+/stereo/right/rectified_images
+```
