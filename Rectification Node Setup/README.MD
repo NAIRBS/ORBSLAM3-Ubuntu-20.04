@@ -38,6 +38,8 @@ Source ROS2 (you need to do this again if this is not added to your bashrc scrip
 
 ```bash
 source /opt/ros/foxy/setup.bash
+OR
+echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc && source ~/.bashrc
 ```
 
 ## Usage with ESP32 Camera Modules
