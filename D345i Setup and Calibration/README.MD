@@ -1,7 +1,16 @@
-First, you need to download USBipd if you're using WSL 2.0 to push the USB ports from windows to WSL [here](https://learn.microsoft.com/en-us/windows/wsl/connect-usb)
+Here’s the README file content in markdown format. You can save this as `README.md`:
 
-After plugging in the RGBD Camera, In Windows Powershell (Administrator):
-```
+````markdown
+# Intel RealSense D345i Setup and Calibration on WSL 2.0
+
+## USB Device Sharing with WSL 2.0
+
+First, install **USBipd** on Windows to forward USB ports to WSL 2.0:  
+[https://learn.microsoft.com/en-us/windows/wsl/connect-usb](https://learn.microsoft.com/en-us/windows/wsl/connect-usb)
+
+After plugging in your RGBD Camera, open **Windows PowerShell (Administrator) and your WSL Terminal** and run:
+
+```powershell
 PS C:\Windows\system32> usbipd list
 BUSID  VID:PID    DEVICE                                                        STATE
 1-1    046d:c539  USB Input Device                                              Not shared
@@ -11,18 +20,26 @@ BUSID  VID:PID    DEVICE                                                        
 1-8    5986:2113  Integrated Camera                                             Shared
 1-10   2386:350e  USB Input Device                                              Not shared
 1-14   8086:0b3a  Intel(R) RealSense(TM) Depth Camera 435i Depth, Intel(R) ...  Shared
-```
-Once you've run usbipd list and gotten your busID (eg: 1-14), open the WSL 2.0 Terminal and then run the following:
-```
-usbipd bind --busid 1-14 << To "Share" input thorugh usbipd
-usbipd attach --busid 1-14 << Attach the USB input to flow through the currently open WSL 2.0
+````
+
+Note your `BUSID` (e.g., `1-14` for the RealSense device).
+
+Then, in your PowerShell Terminal, continue to run:
+
+```bash
+usbipd bind --busid 1-14    # To "share" the USB device through usbipd
+usbipd attach --busid 1-14  # Attach the USB device to the current WSL 2 session
 ```
 
-After this initial setup, you may have to reattach the busid whenever you plug out the D345i, which will be required when the terminal prompts you during calibration and setup.
+> You may need to reattach the USB device after unplugging or restarting the terminal.
 
-## Installing Intel Realsense SDK for Calibration (on 20.04) [Source](https://github.com/IntelRealSense/librealsense)
-First, install the required dependencies:
-```
+---
+
+## Installing Intel RealSense SDK (Ubuntu 20.04)
+
+### 1. Update and install dependencies
+
+```bash
 sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
 sudo apt-get install git wget build-essential
 sudo apt update
@@ -31,33 +48,65 @@ sudo apt-get install libssl-dev libusb-1.0-0-dev libudev-dev pkg-config libgtk-3
 sudo apt-get install libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev at
 ```
 
-You should already have ROS2 Foxy setup (refer to previous guides so continue with:
-```
+### 2. Clone librealsense repository and set up (assuming you've already set up ROS2 Foxy from previous guides)
+
+```bash
 cd ~/colcon/src
 git clone https://github.com/IntelRealSense/librealsense.git
 cd librealsense
 sudo apt install v4l-utils
 sudo ./scripts/setup_udev_rules.sh
+```
 
-uname -r << If this returns above  6.5 run the following
-./scripts/patch-realsense-ubuntu-lts-hwe.sh << this is to patch kernel, but I did not need to do this
-# else if it returns < 5.13
-./scripts/patch-realsense-ubuntu-lts.sh << this is to patch kernel, but I did not need to do this
+### 3. Patch kernel if needed
 
-# While still in the intel realsense folder
+Check kernel version:
+
+```bash
+uname -r
+```
+
+* If kernel version is **above 6.5**, run:
+
+  ```bash
+  ./scripts/patch-realsense-ubuntu-lts-hwe.sh
+  ```
+
+* If kernel version is **below 5.13**, run:
+
+  ```bash
+  ./scripts/patch-realsense-ubuntu-lts.sh
+  ```
+
+*Note: The patch scripts may not be necessary depending on your kernel.*
+
+### 4. Build and install librealsense
+
+```bash
 cmake ./ -DCMAKE_BUILD_TYPE=Release
-make
+make << this could take more than 30 mins
 sudo make -j$(($(nproc)-1)) install
 ```
 
-To open the calibration software:
-```
+---
+
+## Running Calibration Software
+
+To open the calibration GUI:
+
+```bash
 ~/librealsense/Release/realsense-viewer
 ```
-After opening the software, go to the hamburger menu, click calibration data and save it as a file.
 
-To build the ROS2 package for the Intel RealSense to pass frames to ROS2 Topics:
-```
+* Open the hamburger menu
+* Click **Calibration Data**
+* Save the calibration to a file
+
+---
+
+## Building Intel RealSense ROS2 Package
+
+```bash
 cd ~/colcon/src/
 git clone --branch 4.56.3 https://github.com/IntelRealSense/realsense-ros.git
 cd ~/colcon
@@ -67,16 +116,40 @@ sudo rosdep init
 rosdep update --include-eol-distros
 rosdep install -i --from-path src --rosdistro $ROS_DISTRO --skip-keys=librealsense2 -y
 sudo apt install ros-foxy-diagnostic-updater
-colcon build
+colcon build << this could take up to 15 mins
 echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
 ```
-To use the Intel RealSense
-# Launch this in its own terminal
-ros2 launch realsense2_camera rs_launch.py enable_color:=false enable_depth:=false enable_infra1:=true enable_infra2:=true depth_module.infra_profile:=640x480x30 
 
-# Disable IR emitter, Launch this in its own terminal
+---
+
+## Launching Intel RealSense Camera Nodes
+
+### Launch the camera with IR streams enabled (disable colour and depth)
+
+```bash
+ros2 launch realsense2_camera rs_launch.py enable_color:=false enable_depth:=false enable_infra1:=true enable_infra2:=true depth_module.infra_profile:=640x480x30
+```
+
+### Disable IR emitter (run in a separate terminal)
+
+```bash
 ros2 param set /camera/camera depth_module.emitter_enabled 0
+```
 
-#To launch rgbd camera
+---
+
+## Running RGBD Camera Stream Server
+
+In your project folder for AlvaAR, launch the ROS2 stream server:
+
+```bash
 python3 rgbd_ros2_ws_server.py
-npm start at the example folder
+```
+
+And then start the web client in the examples folder:
+
+```bash
+npm start
+```
+
+---
