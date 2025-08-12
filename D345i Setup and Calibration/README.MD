@@ -1,6 +1,3 @@
-Here’s the README file content in markdown format. You can save this as `README.md`:
-
-````markdown
 # Intel RealSense D345i Setup and Calibration on WSL 2.0
 
 ## USB Device Sharing with WSL 2.0
