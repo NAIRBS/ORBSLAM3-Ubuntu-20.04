@@ -25,7 +25,7 @@ Then, in your PowerShell Terminal, continue to run:
 
 ```bash
 usbipd bind --busid 1-14    # To "share" the USB device through usbipd
-usbipd attach --busid 1-14  # Attach the USB device to the current WSL 2 session
+usbipd attach --busid 1-14 --wsl  # Attach the USB device to the current WSL 2 session
 ```
 
 > You may need to reattach the USB device after unplugging or restarting the terminal.
