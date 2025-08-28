@@ -48,7 +48,7 @@ sudo apt-get install libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev at
 ### 2. Clone librealsense repository and set up (assuming you've already set up ROS2 Foxy from previous guides)
 
 ```bash
-cd ~/colcon/src
+cd ~
 git clone https://github.com/IntelRealSense/librealsense.git
 cd librealsense
 sudo apt install v4l-utils
